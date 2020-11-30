@@ -6,4 +6,4 @@
 * [WSLのgitでGPG署名を付ける場合に`gpg failed to sign the data`となる場合](linux/gpg_failed_to_sign_the_data_in_git_on_wsl.md)
 
 ---
-[homeに戻る](https://kazkobara.github.io/tips-jp/)
+[homeに戻る](https://kazkobara.github.io/)
