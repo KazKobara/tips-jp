@@ -1,5 +1,7 @@
 # 小ネタ集
 
-検索しても簡単に見つからなかった解決策や英語のページを検索して見つかった解決策。
+検索しても簡単に見つからなかった解決策や英語のページを検索して見つかった解決策のメモ。
 
+* [docker network の subnet を指定する際に使うべきでないネットワークアドレス](docker/subnet.md)
 * [WSLのgitでGPG署名を付ける場合に`gpg failed to sign the data`となる場合](linux/gpg_failed_to_sign_the_data_in_git_on_wsl.md)
+
