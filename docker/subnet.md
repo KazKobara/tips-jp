@@ -16,8 +16,8 @@ Docker コンテナ・ネットワークについては[こちら](http://docs.d
 
 ## docker build が bridge network に自動で割り当てる subnet
 
-* 172.17.0.0/8
-* version 19.03.13 で確認。
+* 172.17.0.0/16
+* version 19.03.13 などで確認。
 
 ## 補足
 
