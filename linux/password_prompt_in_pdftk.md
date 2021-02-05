@@ -58,18 +58,17 @@ Please enter the user password to use on the output PDF.
 
 上記の「その2： 履歴に残さない」方法は、打ち込むパスワードはそのまま表示されるため、それを止めたい場合は、以下を実行。
 
-pdftk コマンドのパスワード欄を "$pw" とし、pdftk コマンドの前に
-
-```shell
-read -s -p "Enter password: " pw; echo; 
-```
-
-を付ける。
+pdftk コマンドのパスワード欄を "$pw" とし、pdftk コマンドの前に `read -s -p "Enter password: " pw; echo;` を付ける。
 
 例）
 
+```shell
+read -s -p "Enter password: " pw; echo; pdftk input_pdf_file.pdf output password_encrypted_pdf_file.pdf user_pw "$pw"
+```
+
+を実行すると、パスワードを入力するためのプロンプトが表示されるため、そこにパスワードを打ち込む。
+
 ```console
-$ read -s -p "Enter password: " pw; echo; pdftk input_pdf_file.pdf output password_encrypted_pdf_file.pdf user_pw "$pw"
 Enter password: <ここに password を打ち込む> 
 ```
 
