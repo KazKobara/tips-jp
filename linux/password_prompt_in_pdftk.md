@@ -88,7 +88,7 @@ Enter password: <ここに password を打ち込む>
 以下のようなスクリプトを `read_password.sh` などの名前で保存しておき、
 
 ```shell
-#!/bin/sh
+#!/bin/bash
 
 # Read password and store it to given variable.
 # @param $1 variable to store the read password
@@ -96,7 +96,7 @@ read_password () {
     local local_pw=""
     local local_char=""
     echo -n "Enter password: "
-    while read -sn 1 local_char
+    while read -rsn 1 local_char
     do
         if [ "$local_char" == "" ]; then
             break
@@ -108,12 +108,14 @@ read_password () {
     local local_ret=$1
     eval "$local_ret=$local_pw"
 }
+
+read_password pw;
 ```
 
 以下を実行。
 
 ```shell
-source ./read_password.sh; read_password pw; pdftk input_pdf_file.pdf output password_encrypted_pdf_file.pdf user_pw "$pw"; unset pw
+source ./read_password.sh; pdftk input_pdf_file.pdf output password_encrypted_pdf_file.pdf user_pw "$pw"; unset pw
 ```
 
 （もしくは、pdftk を更新するか、更新されるまで待つ...）
