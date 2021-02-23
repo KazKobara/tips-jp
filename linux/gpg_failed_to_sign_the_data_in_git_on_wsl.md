@@ -4,10 +4,10 @@
 
 1. `~/.bashrc` に以下を追加
 
-```shell
-# enable passphrase prompt for gpg
-export GPG_TTY=$(tty)
-```
+    ```shell
+    # enable passphrase prompt for gpg
+    export GPG_TTY=$(tty)
+    ```
 
 2. 追加後`source ~/.bashrc`
 
@@ -23,4 +23,5 @@ export GPG_TTY=$(tty)
 - [WSL Ubuntu: git gpg signing Inappropriate ioctl for device #4029](https://github.com/microsoft/WSL/issues/4029)
 
 ---
-* [一覧に戻る](docker/index.md)
+
+- [一覧に戻る](docker/index.md)
