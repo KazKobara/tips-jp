@@ -29,7 +29,10 @@ directory の頭に `file://` を付ける。
 
 0. git LFS の設定が行われている。
 
-1. git のローカルレポジトリを（一人で利用するため、リモートレポジトリ無しで）作成する。
+1. git のローカルレポジトリを作成する。
+
+   まずは一人で作業を行うため、リモートレポジトリ無しで、ローカルレポジトリのみを作成する。 
+   以下はローカルレポジトリの名前を repo_name とした場合の例、
 
     ```console
     mkdir repo_name
@@ -37,16 +40,18 @@ directory の頭に `file://` を付ける。
     git init
     ```
 
-    (以降 git command (add, commit など) を利用してプログラミングや編集作業などを行う。)
+    (以降、当該フォルダ内で git add, git commit コマンドなどを利用して編集作業を行う。)
 
-2. (閉鎖ネットワーク内で共同作業を行うなどの理由で、共有フォルダなどを) git のリモートレポジトリとして設定する。
+2. git のリモートレポジトリを作成する。
+
+    閉鎖ネットワーク内で共同作業を行うなどの理由で、共有フォルダなどの下に repo_name.git という名前のフォルダでリモートレポジトリを作成する。
 
     ```console
-    mkdir repo_name.git
     git init --bare --shared /path/to/repo_name.git
     ```
 
-    ここで、`/path/to/repo_name.git` の先頭には `file://` を**付けてはならない**ことに注意!! 付けるとコマンドを実行した場所に file: という名前のフォルダができ、その下にリモートレポジトリができるため、意図した場所にリモートレポジトリが作成されないことになる。
+    ここで、`/path/to/repo_name.git` の先頭には `file://` を**付けてはならない**ことに注意!!
+    (付けるとコマンドを実行した場所に file: という名前のフォルダができ、その下にリモートレポジトリができるため、意図した場所にリモートレポジトリが作成されないことになる。)
 
     また、`--shared` には以下のような引数を指定できるため、フォルダの共有範囲に応じて引数を指定する。
 
@@ -74,6 +79,31 @@ directory の頭に `file://` を付ける。
 
     ```console
     git remote set-url origin --add <url>
+    ```
+
+4. 共同作業者による `git clone`
+ 
+    ```console
+    git clone file:///path/to/repo_name.git
+    ```
+
+    ここでも、`/path/to/repo_name.git` の前に `file://` を付けておく。
+    もし、以下の警告が出た場合、
+
+    ```text
+    warning: remote HEAD refers to nonexistent ref, unable to checkout.
+    ```
+
+    デフォルトのブランチ名(例えば master )がリモートレポジトリに存在していないため、以下のコマンドでリモートレポジトリに存在しているブランチを確認し、
+
+    ```console
+    git branch -a
+    ```
+
+    例えば、```remotes/origin/main``` が存在していて、それをチェックアウトする場合は、以下のコマンドを実行する。
+    
+    ```console
+    git checkout main
     ```
 
 ## link
