@@ -47,5 +47,4 @@
 - [Git error: gpg failed to sign the data on Linux](https://stackoverflow.com/questions/52808365/git-error-gpg-failed-to-sign-the-data-on-linux)
 
 ---
-
-- [一覧に戻る](../index.md)
+[homeに戻る](https://kazkobara.github.io/)

@@ -32,3 +32,6 @@ Docker bind mounts の source フォルダやファイルを WSL 上で指定す
 
 * Docker Version 19.03
 * docker-compose version 1.25.4
+
+---
+[homeに戻る](https://kazkobara.github.io/)

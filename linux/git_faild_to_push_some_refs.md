@@ -31,7 +31,7 @@ directory の頭に `file://` を付ける。
 
 1. git のローカルレポジトリを作成する。
 
-   まずは一人で作業を行うため、リモートレポジトリ無しで、ローカルレポジトリのみを作成する。 
+   まずは一人で作業を行うため、リモートレポジトリ無しで、ローカルレポジトリのみを作成する。
    以下はローカルレポジトリの名前を repo_name とした場合の例、
 
     ```console
@@ -82,7 +82,7 @@ directory の頭に `file://` を付ける。
     ```
 
 4. 共同作業者による `git clone`
- 
+
     ```console
     git clone file:///path/to/repo_name.git
     ```
@@ -101,7 +101,7 @@ directory の頭に `file://` を付ける。
     ```
 
     例えば、```remotes/origin/main``` が存在していて、それをチェックアウトする場合は、以下のコマンドを実行する。
-    
+
     ```console
     git checkout main
     ```
@@ -112,5 +112,4 @@ directory の頭に `file://` を付ける。
 - [I have an issue when pushing to a network drive using Git LFS](https://stackoverflow.com/questions/58849793/i-have-an-issue-when-pushing-to-a-network-drive-using-git-lfs)
 
 ---
-
-- [一覧に戻る](docker/index.md)
+[homeに戻る](https://kazkobara.github.io/)

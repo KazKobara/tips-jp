@@ -59,7 +59,7 @@ Please enter the user password to use on the output PDF.
 上記の「その2： 履歴に残さない」方法は、打ち込むパスワードはそのまま表示されるため、それを止めたい場合は、以下のいずれかを実行。
 password が正しくセットされているかは、生成された pdf file を開いて確認。
 
-#### pdftk コマンドの前に `stty -echo;` を付け、後ろに `; stty echo` を付ける。
+#### pdftk コマンドの前に `stty -echo;` を付け、後ろに `; stty echo` を付ける
 
 例）
 
@@ -69,7 +69,7 @@ stty -echo; pdftk input_pdf_file.pdf output password_encrypted_pdf_file.pdf user
 
 万が一、コマンドラインに文字を打ち込んでも何も表示されなくなった場合には、Enter キーを押した後で `stty echo` と打って(も何も表示されないが)再び Enter キーを押す。
 
-#### pdftk コマンドのパスワード欄を "$pw" とし、pdftk コマンドの前に `read -s -p "Enter password: " pw; echo;` を付け、後ろに `; unset pw` を付ける。
+#### pdftk コマンドのパスワード欄を "$pw" とし、pdftk コマンドの前に `read -s -p "Enter password: " pw; echo;` を付け、後ろに `; unset pw` を付ける
 
 例）
 
@@ -121,3 +121,6 @@ source ./read_password.sh; pdftk input_pdf_file.pdf output password_encrypted_pd
 （もしくは、pdftk を更新するか、更新されるまで待つ...）
 
 password が正しくセットされているかは、生成された pdf file を開いて確認。
+
+---
+[homeに戻る](https://kazkobara.github.io/)

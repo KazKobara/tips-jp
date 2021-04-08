@@ -25,4 +25,4 @@ Docker コンテナ・ネットワークについては[こちら](http://docs.d
   * docker-composeが自動的に割り当る subnet はラウンドロビンで毎回変わるため、運悪く指定予定の subnet が自動的に割り当てられた場合に地雷を踏むことになる。
 
 ---
-* [一覧に戻る](docker/index.md)
+[homeに戻る](https://kazkobara.github.io/)
