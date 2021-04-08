@@ -2,6 +2,7 @@
 
 検索しても簡単に見つからなかった解決策や英語のページを検索して見つかった解決策のメモ。
 
+* [PyPI に自作の python package を登録する方法](python/PyPI.md)
 * [git push で `EOFoading LFS objects:` `error: failed to push some refs to '/` などのエラーが出た場合の解決方法](linux/git_faild_to_push_some_refs.md)
 * [pdftk でパスワードをコマンドラインに書かないようにする方法](linux/password_prompt_in_pdftk.md)
 * [docker network の subnet を指定する際に使うべきでないネットワークアドレス](docker/subnet.md)
