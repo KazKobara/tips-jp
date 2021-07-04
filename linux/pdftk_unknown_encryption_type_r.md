@@ -1,4 +1,4 @@
-# pdftk で `unknown.encryption.type.r` エラーが出る場合の解決方法
+# pdftk で `"unknown.encryption.type.r"` エラーが出る場合の解決方法
 
 例えば、
 

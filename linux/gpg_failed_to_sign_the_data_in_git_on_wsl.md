@@ -1,4 +1,4 @@
-# WSLのgitでGPG署名を付ける場合に`gpg failed to sign the data`となる場合
+# WSLのgitでGPG署名を付ける場合に`"gpg failed to sign the data"`となる場合の解決方法
 
 ## 解決策
 

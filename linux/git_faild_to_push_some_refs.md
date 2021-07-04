@@ -1,4 +1,4 @@
-# git push で `EOFoading LFS objects:` `error: failed to push some refs to '/` などのエラーが出た場合の解決方法
+# git push で `"EOFoading LFS objects:"` `"error: failed to push some refs to '/"` などのエラーが出た場合の解決方法
 
 ## 解決策
 
