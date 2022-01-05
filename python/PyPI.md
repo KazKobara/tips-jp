@@ -12,16 +12,6 @@
 
 ## 前準備
 
-### 確認した version
-
-```text
-Python       3.8.5
-pip          21.0.1
-setuptools   50.3.2
-twine        3.4.1
-wheel        0.35.1
-```
-
 ### フォルダ構成の例
 
         .  <--- 作業用フォルダ
@@ -34,6 +24,8 @@ wheel        0.35.1
         ├── <package_name>.egg-info <-自動生成
         ├── setup.cfg               <-作成
         └── setup.py                <-作成
+        
+        ~/.pypirc                   <-作成
 
 - 作業用フォルダを git で管理している場合には、`.gitignore` に以下を追加しておく。これらのフォルダ中のデータは作業後消去可能。
 
@@ -44,6 +36,9 @@ dist/
 ```
 
 ## 自作 python package 登録までの手順
+
+新たな version を追加する場合は(`<package_name>.__version__` などを更新後に) 4. 以降を実行。
+また、4. 以降は[こちらの bash script](https://raw.githubusercontent.com/KazKobara/tips-jp/gh-pages/python/pypi.sh)でも実行可能。
 
 1. `setup.py` に以下のみを記載
 
@@ -68,12 +63,17 @@ dist/
             importlib; python_version == "2.6"
         ```
 
+1. dist の作成に必要となるパッケージのインストール
+
+    ```console
+    pip install twine wheel
+    ```
+
 1. soft と binary の dist を作成しチェック
 
     以下のコマンドを実行
 
     ```console
-    pip install twine wheel
     python setup.py sdist bdist_wheel
     twine check ./dist/*
     ```
@@ -90,11 +90,11 @@ dist/
     - 以下のコマンドにより <package_name> をインストール
 
         ```console
-        pip install --no-index --find-links=<上記でチェックしたdistへのPATH>/dist <package_name>
+        pip install --no-index --find-links=<上記でチェックしたdistへのPATH>/dist <package_name>==<version>
         ```
 
         ```text
-        ERROR: Could not find a version that satisfies the requirement scipy (from ebcic)
+        ERROR: Could not find a version that satisfies the requirement scipy (from <package_name>)
         ERROR: No matching distribution found for scipy
         ```
 
@@ -132,8 +132,8 @@ dist/
 
 1. PyPI テストサイトへのアップロードとインストール
 
-    - PyPI 本番およびテストサイトでは、いずれも、登録したパッケージの削除は可能であるが、一度登録した version 番号に対してはそのパッケージを削除したとしても、**同じversion 番号で別のパッケージを登録することはできない**
-      - PyPI の本番およびテストサイトは独立しているため、それらに同じ version 番号で違う内容を登録することはできる。
+    - PyPI 本番およびテストサイトでは、いずれも、登録したパッケージの削除は可能であるが、削除したとしても**一度登録した version 番号で別のパッケージを登録することはできない**
+      - ただし、PyPI の本番およびテストサイトは独立しているため、それらに同じ version 番号で違う内容を登録することはできる。
     - そのため、まずは PyPIのテストサイトを用いて登録のテストを行うこと。
     - 以下のコマンドで PyPI テストサイトへアップロード
 
@@ -158,8 +158,36 @@ dist/
     - 初期状態に戻したテスト環境(Python仮想環境)へ移動し、パッケージをダウンロードし動作をテスト。
 
         ```console
-        pip install ebcic==<version>
+        pip install <package_name>==<version>
         ```
 
+## 動作確認した version
+
+### ver. 0.0.2
+
+```text
+Python       3.8.0
+pip          21.3.1
+setuptools   60.2.0
+twine        3.4.1
+wheel        0.35.1
+```
+
+### ver. 0.0.1 - 0.0.2
+
+```text
+Python       3.8.5
+pip          21.0.1
+setuptools   50.3.2
+twine        3.4.1
+wheel        0.35.1
+```
+
 ---
+最後までお読み頂きありがとうございます。
+GitHubアカウントをお持ちでしたら、フォロー及び Star 頂ければと思います。リンクも歓迎です。
+
+- [Follow (クリック後の画面左)](https://github.com/KazKobara)
+- [Star (クリック後の画面右上)](https://github.com/KazKobara/tips-jp)
+
 [homeに戻る](https://kazkobara.github.io/)
