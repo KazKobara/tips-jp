@@ -20,6 +20,7 @@
 1. `GIT_CURL_VERBOSE=1 GIT_TRACE=1 <エラーとなるgitコマンドとオプション>` を実行しgitから呼び出されているgpgコマンドを表示させる。
 2. 表示されたコマンドをコマンドラインで実行。
     - 実行に失敗する場合には、「gpg コマンドが入っていない」、「署名鍵が作られていない」などの原因が考えられる。これらの解決策は検索すれば出てくる。
+    - 署名鍵とその owner trust を含む鍵情報一式のバックアップとレストアは[こちらのツール](https://github.com/KazKobara/tips-jp/tree/gh-pages/linux/gnupg_backup_restore.sh)で行える。
 
 ### `git config` の `user.signingkey` が設定されていない
 
@@ -43,8 +44,11 @@
 
 ## link
 
-- [WSL Ubuntu: git gpg signing Inappropriate ioctl for device #4029](https://github.com/microsoft/WSL/issues/4029)
-- [Git error: gpg failed to sign the data on Linux](https://stackoverflow.com/questions/52808365/git-error-gpg-failed-to-sign-the-data-on-linux)
+- [WSL Ubuntu: git gpg signing Inappropriate ioctl for device #4029](https://github.com/microsoft/WSL/issues/4029 "https://github.com/microsoft/WSL/issues/4029")
+- [Git error: gpg failed to sign the data on Linux](https://stackoverflow.com/questions/52808365/git-error-gpg-failed-to-sign-the-data-on-linux "https://stackoverflow.com/questions/52808365/git-error-gpg-failed-to-sign-the-data-on-linux")
+- [How to Fully Backup and Restore gpg Keys, Signatures and Settings](https://askubuntu.com/questions/1362947/how-to-fully-backup-and-restore-gpg-keys-signatures-and-settings "https://askubuntu.com/questions/1362947/how-to-fully-backup-and-restore-gpg-keys-signatures-and-settings")
+- [Gnu Privacy Guard Tutorial Backup and Restore](https://www.jwillikers.com/backup-and-restore-a-gpg-key)
+- [GnuPG Manual](https://gnupg.org/documentation/manuals/gnupg/)
 
 ---
 [homeに戻る](https://kazkobara.github.io/)
