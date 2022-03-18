@@ -1,5 +1,28 @@
 # shell script の小ネタ集（間違いやすい箇所のまとめ）
 
+## 必要な背景知識
+
+- shell コマンドや shell script
+
+## 関数内での trap
+
+`set -o errtrace` が無いと、関数内のエラー箇所でトラップされない。
+[テスト用コードはこちら。](https://github.com/KazKobara/tips-jp/blob/gh-pages/shell/trap_in_func.sh)
+
+```bash
+set -e
+set -o errtrace  # 関数内でも trap する場合に追加
+trap 'echo "Error: line $LINENO returned $?!"' ERR
+
+false_in_func () {
+  echo "Before false"
+  false
+  echo "After false"
+}
+
+echo "Done"
+```
+
 ## 複数行コメント中のシングルクオートとダブルクオート
 
 ```shell
@@ -20,6 +43,8 @@
 : <<'COMMENT_EOF'
 ここはシングルクオート「'」もダブルクオート「"」も
 エスケープ無しで複数行をコメントアウトできます。
+上部の COMMENT_EOF はクオートで挟んでも挟まなくてもよいですが、
+下部の COMMENT_EOF はクオートしてはいけません。
 COMMENT_EOF
 ```
 
@@ -42,6 +67,14 @@ cat <<STD_INPUT_WITH_EXPANSION_EOF
 ここまで標準入力
 STD_INPUT_WITH_EXPANSION_EOF
 ```
+
+ちなみに、echo コマンドに渡す STRING のシングルクオート、ダブルクオート、クオート無しの違いは以下のとおり。
+
+- シングルクオートに挟まれた範囲内には、たとえ echo コマンドに `-e` オプションを付けてエスケープしたとしても、シングルクオートを含めることはできない。
+- クオートで挟まれていない場合、リテラル（通常の文字）としてスペースやシングルクオートを扱う場合、それらの前にエスケープ記号「\」が必要。
+  - その際、`-e` オプションは合っても無くてもよい(shellによる処理のため)。
+- クオートに関係無く echo に `-e` オプションを付けると上記以外についても「\」がエスケープ記号と解釈される。
+<!-- - ダブルクオート中ではエスケープ無しでスペースやシングルクオートを含められることは説明するまでもない。-->
 
 ## 比較演算子としての "=" と "==" との違い
 
