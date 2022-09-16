@@ -37,8 +37,9 @@ dist/
 
 ## 自作 python package 登録までの手順
 
-新たな version を追加する場合は(`<package_name>.__version__` などを更新後に) 4. 以降を実行。
-また、4. 以降は[こちらの bash script](https://raw.githubusercontent.com/KazKobara/tips-jp/gh-pages/python/pypi.sh)でも実行可能。
+新たな version を追加する場合は(`<package_name>.__version__` などを更新後に) [更新時に必要な手順](#更新時に必要な手順)を実行。
+
+### 初回のみ必要な手順
 
 1. `setup.py` に以下のみを記載
 
@@ -68,6 +69,42 @@ dist/
     ```console
     pip install twine wheel
     ```
+
+1. PyPI テストサイトおよび本番サイトへのユーザ登録
+
+    - [PyPI本番サイトのユーザ登録ページ](https://test.pypi.org/account/register/)および[PyPIテストサイトのユーザ登録ページ](https://pypi.org/account/register/)でそれぞれユーザ登録する。
+      - 登録情報は同じでも違ってもよい。
+
+1. 登録コマンド省略するための設定
+
+    - 必要に応じ以下の内容を `~/.pypirc` に記載。
+
+    ```text
+    [distutils]
+    index-servers =
+        pypi
+        testpypi
+
+    [pypi]
+    repository: https://upload.pypi.org/legacy/
+    username:   <上記で登録したユーザ名>
+    # password: <パスワードは記載しない>
+
+    [testpypi]
+    repository: https://test.pypi.org/legacy/
+    username:   <上記で登録したユーザ名>
+    # password: <パスワードは記載しない>
+    ```
+
+1. 以下の[更新時に必要な手順](#更新時に必要な手順)を実行
+
+### 更新時に必要な手順
+
+以下の手順の実行は、[こちらの bash script](https://raw.githubusercontent.com/KazKobara/tips-jp/gh-pages/python/pypi.sh) を以下の引数で実行することでも可能です。
+
+```bash
+./pypi.sh <package_name> <package_ver>
+```
 
 1. soft と binary の dist を作成しチェック
 
@@ -104,32 +141,6 @@ dist/
 
     - `pip list` により意図する version の <package_name> がインストールされていることが確認できれば、<package_name> の動作を確認する。
 
-1. PyPI テストサイトおよび本番サイトへのユーザ登録
-
-    - [PyPI本番サイトのユーザ登録ページ](https://test.pypi.org/account/register/)および[PyPIテストサイトのユーザ登録ページ](https://pypi.org/account/register/)でそれぞれユーザ登録する。
-      - 登録情報は同じでも違ってもよい。
-
-1. 登録コマンド省略するための設定
-
-    - 必要に応じ以下の内容を `~/.pypirc` に記載。
-
-    ```text
-    [distutils]
-    index-servers =
-        pypi
-        testpypi
-
-    [pypi]
-    repository: https://upload.pypi.org/legacy/
-    username:   <上記で登録したユーザ名>
-    # password: <パスワードは記載しない>
-
-    [testpypi]
-    repository: https://test.pypi.org/legacy/
-    username:   <上記で登録したユーザ名>
-    # password: <パスワードは記載しない>
-    ```
-
 1. PyPI テストサイトへのアップロードとインストール
 
     - PyPI 本番およびテストサイトでは、いずれも、登録したパッケージの削除は可能であるが、削除したとしても**一度登録した version 番号で別のパッケージを登録することはできない**
@@ -144,10 +155,11 @@ dist/
     - 初期状態に戻したテスト環境(Python仮想環境)へ移動し、パッケージをダウンロードし動作をテスト。
 
         ```console
+        pip uninstall <package_name>
         pip install -i https://test.pypi.org/simple/ <package_name>==<version>
         ```
 
-1. PyPI テストサイトへのアップロードとインストール
+1. PyPI 本番サイトへのアップロードとインストール
 
     - 以下のコマンドで PyPI 本番サイトへアップロード
 
@@ -158,12 +170,13 @@ dist/
     - 初期状態に戻したテスト環境(Python仮想環境)へ移動し、パッケージをダウンロードし動作をテスト。
 
         ```console
+        pip uninstall <package_name>
         pip install <package_name>==<version>
         ```
 
 ## 動作確認した version
 
-### ver. 0.0.2
+### ebcic ver. 0.0.2
 
 ```text
 Python       3.8.0
@@ -173,7 +186,7 @@ twine        3.4.1
 wheel        0.35.1
 ```
 
-### ver. 0.0.1 - 0.0.2
+### ebcic ver. 0.0.1 - 0.0.2
 
 ```text
 Python       3.8.5
@@ -190,4 +203,4 @@ GitHubアカウントをお持ちでしたら、フォロー及び Star 頂け�
 - [Follow (クリック後の画面左)](https://github.com/KazKobara)
 - [Star (クリック後の画面右上)](https://github.com/KazKobara/tips-jp)
 
-[homeに戻る](https://kazkobara.github.io/)
+[homeに戻る](https://kazkobara.github.io/README-jp.html)
