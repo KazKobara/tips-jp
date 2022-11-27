@@ -1,26 +1,32 @@
 #!/bin/bash
 #
-# PyPI Registration Script ver. 0.0.0
+# PyPI Registration Script
 #
 # This script requires ​setup.py, setup.cfg, and ~/.pypirc explained in 
 # https://github.com/KazKobara/tips-jp/blob/gh-pages/python/PyPI.md
 # (in Japanese).
-# 
-# Usage:
-# ./pypi.sh <package_name> <package_ver>
+
+### Params ###
+VER=0.0.0
+COMMAND=$(basename "$0")
 
 ### Functions ###
+usage () {
+    echo "PyPI Registration Script ${VER}"
+    echo "Usage:"
+    echo "  ./${COMMAND} <package_name> <package_ver>"
+}
 
 # @brief Read 'y' or 'n' and then return 0 or 1, respectively.
 # @return 0 for 'y' and 1 for 'n'.
 y_or_n () {
     while read -r ans; do
-	if [ "$ans" == "y" ]; then
-	    return 0
-	elif [ "$ans" == "n" ]; then
-	    return 1
-	fi
-	echo -n "Enter either 'y' or 'n':"
+        if [ "$ans" == "y" ]; then
+            return 0
+        elif [ "$ans" == "n" ]; then
+            return 1
+        fi
+        echo -n "Enter either 'y' or 'n':"
     done
 }
 
@@ -51,8 +57,8 @@ upload_check_message1 () {
 upload_check_message2 () {
     echo
     echo -n "Are the tests passed? [y/n]:"
-    y_or_n
-    if [ "$?" == "1" ]; then
+    if ! y_or_n; then
+        # if no
         echo
         echo "Assign '$1.__version__' a new version number, such as '1.0.0a1',"
         echo "(since the same version number cannot be uploaded)."
@@ -64,12 +70,17 @@ upload_check_message2 () {
 ### Body ###
 
 # Setup and check
+if [ "$1" == "" ] || [ "$2" == "" ]; then
+    usage
+    exit 1
+fi
+
 python setup.py sdist bdist_wheel && echo && twine check dist/"$1"-"$2"{-py*,.tar.gz}
 
 echo
 echo -n "Have the checks 'PASSED'? [y/n]:"
-y_or_n
-if [ "$?" == "1" ]; then
+if ! y_or_n; then
+    # if no
     echo
     rm_exit1 "$1" "$2"
 fi
@@ -78,8 +89,8 @@ fi
 upload_check_message1 "$1" "$2" "--no-index --find-links=$(pwd)/dist"
 echo
 echo -n "Are the tests passed? [y/n]:"
-y_or_n
-if [ "$?" == "1" ]; then
+if ! y_or_n; then
+    # if no
     echo
     rm_exit1 "$1" "$2"
 fi
