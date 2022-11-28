@@ -152,7 +152,7 @@ dist/
         twine upload -r testpypi dist/<package_name>-<version>*
         ```
 
-    - 初期状態に戻したテスト環境(Python仮想環境)へ移動し、パッケージをダウンロードし動作をテスト。
+    - 初期状態に戻したテスト環境(Python仮想環境)へ移動し、パッケージをダウンロードし動作をテスト
 
         ```console
         pip uninstall <package_name>
@@ -167,11 +167,17 @@ dist/
         twine upload -r pypi dist/<package_name>-<version>*
         ```
 
-    - 初期状態に戻したテスト環境(Python仮想環境)へ移動し、パッケージをダウンロードし動作をテスト。
+    - 初期状態に戻したテスト環境(Python仮想環境)へ移動し、パッケージをダウンロードし動作をテスト
 
         ```console
         pip uninstall <package_name>
         pip install <package_name>==<version>
+        ```
+
+        > PyPIに反映される前に `pip install` を実行すると以下のようなエラーになる。その場合は、しばらく時間を置いてから再実行
+
+        ```console
+        ERROR: No matching distribution found for <version>
         ```
 
 ## 動作確認した version

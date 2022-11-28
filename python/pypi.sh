@@ -45,7 +45,8 @@ rm_exit1 (){
 # @param $2 version
 upload_check_message1 () {
     echo
-    echo "In a test environment, run the following commands, then test it!"
+    echo "After checking the above URL,"
+    echo "run the following commands in a test environment, then test it!"
     echo " \$ pip uninstall $1"
     echo " \$ pip install $3 $1==$2"
 }
